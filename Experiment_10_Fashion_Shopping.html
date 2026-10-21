@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Fashion Shopping</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#faf7f4;color:#342f2d}
+header{background:#292626;color:white;padding:24px 7%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}header h1{margin:0}
+nav a{color:white;text-decoration:none;margin-left:18px}
+main{max-width:1100px;margin:25px auto;padding:0 16px}.hero{padding:28px;background:#e9ded5;border-radius:12px;margin-bottom:22px}
+.filters{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}.filters select{padding:10px;border:1px solid #d4c8bf;border-radius:6px;background:white}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.product{background:white;border-radius:12px;padding:18px;box-shadow:0 4px 14px #30201810}
+.photo{height:130px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:46px;background:#f0e9e3}
+.product h3{margin:12px 0 6px}.price{font-weight:bold;color:#76513e;font-size:18px}
+button{background:#292626;color:white;border:0;border-radius:6px;padding:10px 14px;cursor:pointer}
+.cart{margin-top:24px;background:white;padding:20px;border-radius:12px}table{width:100%;border-collapse:collapse}th,td{padding:11px;text-align:left;border-bottom:1px solid #e7dfd9}
+@media(max-width:750px){.products{grid-template-columns:repeat(2,1fr)}}@media(max-width:500px){.products{grid-template-columns:1fr}}
+</style></head>
+<body><header><h1>Mode & Co.</h1><nav><a href="#collection">Collection</a><a href="#cart">Cart (<span id="cartCount">0</span>)</a></nav></header>
+<main><section class="hero"><h2>Everyday Style, Made Simple</h2><p>Explore a small collection of clothing and add items to your shopping cart.</p></section>
+<div class="filters"><label>Category: <select id="category" onchange="filterProducts()"><option value="all">All</option><option value="Women">Women</option><option value="Men">Men</option><option value="Accessories">Accessories</option></select></label>
+<label>Sort by: <select id="sort" onchange="sortProducts()"><option value="default">Featured</option><option value="low">Price: Low to High</option><option value="high">Price: High to Low</option></select></label></div>
+<section id="collection"><h2>Featured Collection</h2><div class="products" id="productList">
+<article class="product" data-category="Women" data-price="1299"><div class="photo">👗</div><h3>Casual Dress</h3><p>Women · Everyday wear</p><p class="price">₹1,299</p><button onclick="addToCart('Casual Dress',1299)">Add to Cart</button></article>
+<article class="product" data-category="Men" data-price="899"><div class="photo">👕</div><h3>Classic T-Shirt</h3><p>Men · Cotton blend</p><p class="price">₹899</p><button onclick="addToCart('Classic T-Shirt',899)">Add to Cart</button></article>
+<article class="product" data-category="Accessories" data-price="599"><div class="photo">👜</div><h3>Everyday Bag</h3><p>Accessories · Daily use</p><p class="price">₹599</p><button onclick="addToCart('Everyday Bag',599)">Add to Cart</button></article>
+<article class="product" data-category="Women" data-price="1499"><div class="photo">🧥</div><h3>Light Jacket</h3><p>Women · Layering</p><p class="price">₹1,499</p><button onclick="addToCart('Light Jacket',1499)">Add to Cart</button></article>
+<article class="product" data-category="Men" data-price="1199"><div class="photo">👖</div><h3>Denim Jeans</h3><p>Men · Regular fit</p><p class="price">₹1,199</p><button onclick="addToCart('Denim Jeans',1199)">Add to Cart</button></article>
+<article class="product" data-category="Accessories" data-price="399"><div class="photo">🧢</div><h3>Classic Cap</h3><p>Accessories · Casual</p><p class="price">₹399</p><button onclick="addToCart('Classic Cap',399)">Add to Cart</button></article>
+</div></section>
+<section class="cart" id="cart"><h2>Your Cart</h2><table><thead><tr><th>Item</th><th>Price</th><th>Action</th></tr></thead><tbody id="cartItems"><tr><td colspan="3">No items added yet.</td></tr></tbody></table><h3 id="cartTotal">Total: ₹0</h3><button onclick="placeOrder()">Place Demo Order</button><p id="orderMessage" aria-live="polite"></p></section>
+</main>
+<script>
+let items=[];
+function addToCart(name,price){items.push({name,price});updateCart();}
+function removeFromCart(i){items.splice(i,1);updateCart();}
+function updateCart(){
+document.getElementById("cartCount").textContent=items.length;
+let body=document.getElementById("cartItems");
+body.innerHTML=items.length?items.map((x,i)=>'<tr><td>'+x.name+'</td><td>₹'+x.price+'</td><td><button onclick="removeFromCart('+i+')">Remove</button></td></tr>').join(''):'<tr><td colspan="3">No items added yet.</td></tr>';
+document.getElementById("cartTotal").textContent="Total: ₹"+items.reduce((sum,x)=>sum+x.price,0);
+document.getElementById("orderMessage").textContent="";
+}
+function filterProducts(){let value=document.getElementById("category").value;
+document.querySelectorAll(".product").forEach(p=>p.style.display=value==="all"||p.dataset.category===value?"block":"none");}
+function sortProducts(){let list=document.getElementById("productList");let cards=Array.from(list.children);let value=document.getElementById("sort").value;
+if(value!=="default")cards.sort((a,b)=>value==="low"?Number(a.dataset.price)-Number(b.dataset.price):Number(b.dataset.price)-Number(a.dataset.price));
+cards.forEach(card=>list.appendChild(card));}
+function placeOrder(){document.getElementById("orderMessage").textContent=items.length?"Demo order prepared. No payment has been taken.":"Please add at least one item first.";}
+</script></body></html>

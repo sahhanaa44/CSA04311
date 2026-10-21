@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Cake Ordering</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#fff7f3;color:#493b39;font-family:Arial,sans-serif}
+header{text-align:center;padding:28px 16px;background:#8f3f50;color:white}header h1{margin:0}
+main{max-width:900px;margin:25px auto;padding:0 16px}.layout{display:grid;grid-template-columns:1.2fr .8fr;gap:20px}
+.card{background:white;padding:23px;border-radius:12px;box-shadow:0 4px 15px #59301c12}h2{color:#8f3f50;margin-top:0}
+label{display:block;font-weight:bold;margin:13px 0 6px}input,select,textarea{width:100%;padding:11px;border:1px solid #e2c9c7;border-radius:6px;font:inherit}
+button{background:#8f3f50;color:white;padding:12px 20px;border:0;border-radius:6px;margin-top:17px;cursor:pointer}
+.price{font-size:20px;font-weight:bold;color:#8f3f50}.menu-item{padding:12px 0;border-bottom:1px solid #f0dfdc}
+@media(max-width:650px){.layout{grid-template-columns:1fr}}
+</style></head><body>
+<header><h1>Sweet Crumbs Bakery</h1><p>Fresh cakes for every celebration</p></header>
+<main><div class="layout">
+<section class="card"><h2>Place Your Cake Order</h2>
+<form onsubmit="placeOrder(event)">
+<label for="name">Customer Name</label><input id="name" required placeholder="Enter your name">
+<label for="phone">Contact Number</label><input id="phone" type="tel" pattern="[0-9]{10}" required placeholder="10-digit mobile number">
+<label for="cake">Cake Flavour</label><select id="cake" required><option value="">Select flavour</option><option value="Chocolate">Chocolate</option><option value="Vanilla">Vanilla</option><option value="Red Velvet">Red Velvet</option><option value="Black Forest">Black Forest</option></select>
+<label for="size">Cake Size</label><select id="size" required><option value="">Select size</option><option value="0.5">0.5 kg</option><option value="1">1 kg</option><option value="2">2 kg</option></select>
+<label for="date">Delivery Date</label><input type="date" id="date" required>
+<label for="message">Cake Message / Special Request</label><textarea id="message" rows="3" placeholder="Happy Birthday..."></textarea>
+<button type="submit">Place Order</button></form><p id="orderResult" aria-live="polite"></p></section>
+<aside class="card"><h2>Our Cake Menu</h2>
+<div class="menu-item"><strong>Chocolate Truffle</strong><p>Rich chocolate layers</p><span class="price">₹650 / kg</span></div>
+<div class="menu-item"><strong>Vanilla Cream</strong><p>Classic vanilla sponge</p><span class="price">₹500 / kg</span></div>
+<div class="menu-item"><strong>Red Velvet</strong><p>Cream cheese-style frosting</p><span class="price">₹800 / kg</span></div>
+<div class="menu-item"><strong>Black Forest</strong><p>Chocolate, cream and cherry</p><span class="price">₹600 / kg</span></div>
+<p><small>Prices are sample values for this lab exercise.</small></p></aside>
+</div></main>
+<script>
+const today=new Date().toISOString().split("T")[0];document.getElementById("date").min=today;
+function placeOrder(e){e.preventDefault();let kg=Number(document.getElementById("size").value);
+let rates={"Chocolate":650,"Vanilla":500,"Red Velvet":800,"Black Forest":600};
+let flavour=document.getElementById("cake").value;let total=kg*rates[flavour];
+document.getElementById("orderResult").textContent="Thank you, "+document.getElementById("name").value+
+"! Your "+kg+" kg "+flavour+" cake order is recorded. Sample total: ₹"+total+". Delivery: "+document.getElementById("date").value+".";}
+</script></body></html>

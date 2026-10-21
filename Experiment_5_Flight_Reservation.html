@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Flight Reservation</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f2f6fb;color:#26374a}
+header{background:linear-gradient(110deg,#102d50,#2176a8);color:white;padding:28px 8%}header h1{margin:0 0 8px}
+main{max-width:950px;margin:28px auto;padding:0 16px}.card{background:white;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 4px 15px #142b4210}
+h2{color:#145783;margin-top:0}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+label{display:block;font-weight:bold;margin-bottom:6px}input,select{width:100%;padding:11px;border:1px solid #c8d4e0;border-radius:6px}
+button{background:#0878b9;color:white;border:0;border-radius:6px;padding:12px 22px;cursor:pointer;margin-top:18px}
+table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:12px;border-bottom:1px solid #e0e8ef}th{background:#edf5fb}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+</style></head>
+<body>
+<header><h1>SkyWay Flight Booking</h1><p>Find a suitable flight and submit passenger information.</p></header>
+<main>
+<section class="card"><h2>Search Flights</h2>
+<form onsubmit="bookFlight(event)">
+<div class="grid">
+<div><label for="origin">Departure City</label><input id="origin" required placeholder="e.g. Chennai"></div>
+<div><label for="destination">Destination City</label><input id="destination" required placeholder="e.g. Delhi"></div>
+<div><label for="depart">Departure Date</label><input type="date" id="depart" required></div>
+<div><label for="return">Return Date (optional)</label><input type="date" id="return"></div>
+<div><label for="trip">Trip Type</label><select id="trip"><option>One Way</option><option>Round Trip</option></select></div>
+<div><label for="cabin">Cabin Class</label><select id="cabin"><option>Economy</option><option>Premium Economy</option><option>Business</option><option>First Class</option></select></div>
+<div><label for="traveller">Passenger Name</label><input id="traveller" required></div>
+<div><label for="count">Passengers</label><input type="number" id="count" min="1" max="9" value="1" required></div>
+</div>
+<button type="submit">Find Flights</button>
+</form><p id="result" aria-live="polite"></p></section>
+<section class="card"><h2>Sample Flight Options</h2>
+<table><tr><th>Flight</th><th>Route</th><th>Departure</th><th>Class</th></tr>
+<tr><td>SW 204</td><td>Chennai – Delhi</td><td>09:15 AM</td><td>Economy</td></tr>
+<tr><td>SW 318</td><td>Chennai – Mumbai</td><td>01:40 PM</td><td>Economy / Business</td></tr>
+<tr><td>SW 422</td><td>Chennai – Hyderabad</td><td>06:20 PM</td><td>Economy</td></tr></table>
+<p><small>Sample options are for interface demonstration only. No actual ticket is issued.</small></p></section>
+</main>
+<script>
+function bookFlight(e){e.preventDefault();document.getElementById("result").textContent=
+"Search submitted for "+document.getElementById("traveller").value+": "+
+document.getElementById("origin").value+" to "+document.getElementById("destination").value+
+" on "+document.getElementById("depart").value+". Selected class: "+document.getElementById("cabin").value+".";}
+</script></body></html>

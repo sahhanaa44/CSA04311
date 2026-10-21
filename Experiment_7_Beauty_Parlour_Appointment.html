@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Beauty Parlour Appointment</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f5f3fb;color:#302c40}
+header{background:#51447d;color:white;padding:26px 8%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+header h1{margin:0}nav a{color:white;text-decoration:none;margin-left:16px}
+main{max-width:950px;margin:26px auto;padding:0 16px}.card{background:white;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 4px 15px #21134d10}
+h2{color:#51447d;margin-top:0}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+label{display:block;font-weight:bold;margin-bottom:6px}input,select,textarea{width:100%;padding:11px;border:1px solid #d5d0e6;border-radius:6px;font:inherit}
+button{background:#51447d;color:white;padding:12px 20px;border:0;border-radius:6px;margin-top:18px;cursor:pointer}
+.service-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.service{background:#f3f0fb;padding:15px;border-radius:8px}
+@media(max-width:650px){.grid,.service-list{grid-template-columns:1fr}}
+</style></head>
+<body><header><h1>Glow Studio</h1><nav><a href="#services">Services</a><a href="#appointment">Book Appointment</a></nav></header>
+<main>
+<section class="card" id="services"><h2>Our Services</h2><div class="service-list">
+<div class="service"><strong>Hair Styling</strong><p>From ₹400</p></div><div class="service"><strong>Facial</strong><p>From ₹700</p></div><div class="service"><strong>Manicure</strong><p>From ₹350</p></div>
+</div></section>
+<section class="card" id="appointment"><h2>Appointment Form</h2>
+<form onsubmit="confirmAppointment(event)"><div class="grid">
+<div><label for="customer">Customer Name</label><input id="customer" required></div>
+<div><label for="mobile">Mobile Number</label><input id="mobile" type="tel" pattern="[0-9]{10}" required placeholder="10-digit number"></div>
+<div><label for="service">Select Service</label><select id="service" required><option value="">Choose service</option><option>Hair Styling</option><option>Facial</option><option>Manicure</option><option>Hair Colouring</option><option>Bridal Makeup</option></select></div>
+<div><label for="staff">Preferred Staff</label><select id="staff"><option>No preference</option><option>Anu</option><option>Priya</option><option>Meera</option></select></div>
+<div><label for="day">Appointment Date</label><input type="date" id="day" required></div>
+<div><label for="time">Preferred Time</label><select id="time" required><option value="">Select time</option><option>10:00 AM</option><option>12:00 PM</option><option>02:00 PM</option><option>04:00 PM</option><option>06:00 PM</option></select></div>
+</div><label for="notes" style="margin-top:15px">Additional Notes</label><textarea id="notes" rows="3" placeholder="Any preferences..."></textarea>
+<button type="submit">Book Appointment</button></form><p id="confirmation" aria-live="polite"></p>
+</section></main>
+<script>
+document.getElementById("day").min=new Date().toISOString().split("T")[0];
+function confirmAppointment(e){e.preventDefault();document.getElementById("confirmation").textContent=
+"Appointment request received for "+document.getElementById("customer").value+" — "+
+document.getElementById("service").value+" on "+document.getElementById("day").value+
+" at "+document.getElementById("time").value+". Please contact the studio to confirm availability.";}
+</script></body></html>

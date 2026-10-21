@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Train Reservation</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#eef3f8;color:#243247}
+header{background:#173b63;color:white;padding:24px 8%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+header h1{margin:0;font-size:26px}nav a{color:white;text-decoration:none;margin-left:18px}
+main{max-width:1000px;margin:28px auto;padding:0 16px}.intro{background:white;padding:22px;border-radius:12px;margin-bottom:20px}
+.panel{background:white;padding:24px;border-radius:12px;box-shadow:0 4px 14px #18365312}
+h2{margin-top:0;color:#173b63}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+label{display:block;font-weight:bold;margin-bottom:7px}input,select{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:6px;font-size:15px}
+button{background:#1769aa;color:white;border:0;padding:12px 20px;border-radius:6px;font-size:15px;cursor:pointer;margin-top:18px}
+table{width:100%;border-collapse:collapse;margin-top:20px}th,td{padding:12px;text-align:left;border-bottom:1px solid #e2e8f0}th{background:#eaf2fa}
+.note{color:#5d6b7c;font-size:14px}@media(max-width:600px){.grid{grid-template-columns:1fr}header{gap:12px}nav a{margin:0 10px 0 0}}
+</style>
+</head>
+<body>
+<header><h1>RailConnect</h1><nav><a href="#search">Search Trains</a><a href="#schedule">Popular Routes</a></nav></header>
+<main>
+<section class="intro"><h2>Plan Your Journey</h2><p>Search trains by source, destination and travel date. Enter passenger details to continue with a reservation.</p></section>
+<section class="panel" id="search">
+<h2>Train Reservation Form</h2>
+<form onsubmit="showConfirmation(event)">
+<div class="grid">
+<div><label for="from">From Station</label><input id="from" required placeholder="e.g. Chennai"></div>
+<div><label for="to">To Station</label><input id="to" required placeholder="e.g. Bengaluru"></div>
+<div><label for="date">Journey Date</label><input id="date" type="date" required></div>
+<div><label for="class">Travel Class</label><select id="class" required><option value="">Choose class</option><option>Sleeper (SL)</option><option>AC 3 Tier (3A)</option><option>AC 2 Tier (2A)</option><option>Chair Car (CC)</option></select></div>
+<div><label for="passenger">Passenger Name</label><input id="passenger" required placeholder="Full name"></div>
+<div><label for="age">Age</label><input id="age" type="number" min="1" max="120" required></div>
+</div>
+<p><label><input type="checkbox" required style="width:auto"> I confirm that the passenger details are correct.</label></p>
+<button type="submit">Search and Continue</button>
+<p class="note">This demonstration displays a sample confirmation; it does not make a real booking or payment.</p>
+</form><p id="message" aria-live="polite"></p>
+</section>
+<section class="panel" id="schedule" style="margin-top:20px">
+<h2>Popular Routes</h2>
+<table><tr><th>Train Route</th><th>Approx. Duration</th><th>Availability</th></tr>
+<tr><td>Chennai – Bengaluru</td><td>5–6 hours</td><td>Check dates</td></tr>
+<tr><td>Chennai – Coimbatore</td><td>7–8 hours</td><td>Check dates</td></tr>
+<tr><td>Chennai – Madurai</td><td>6–7 hours</td><td>Check dates</td></tr></table>
+</section>
+</main>
+<script>
+function showConfirmation(event){
+ event.preventDefault();
+ document.getElementById("message").textContent =
+ "Details received for " + document.getElementById("passenger").value +
+ ". Route: " + document.getElementById("from").value + " to " +
+ document.getElementById("to").value + ". Sample reservation request created.";
+}
+</script>
+</body></html>
