@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flight Reservation</title>
+</head>
+<body>
+    <h1>Online Flight Booking</h1>
+    <hr>
+
+    <h2>Passenger Information</h2>
+    <form>
+        Passenger Name: <input type="text" required><br><br>
+        Email: <input type="email"><br><br>
+        Phone Number: <input type="tel"><br><br>
+        Travel Date: <input type="date"><br><br>
+
+        From:
+        <select>
+            <option>Chennai</option>
+            <option>Mumbai</option>
+            <option>Delhi</option>
+        </select><br><br>
+
+        Destination:
+        <select>
+            <option>Delhi</option>
+            <option>Chennai</option>
+            <option>Kolkata</option>
+            <option>Mumbai</option>
+        </select><br><br>
+
+        Travel Class:
+        <input type="radio" name="class"> Economy
+        <input type="radio" name="class"> Business
+        <input type="radio" name="class"> First Class
+        <br><br>
+
+        Number of Passengers:
+        <input type="number" min="1"><br><br>
+
+        <input type="submit" value="Search Flights">
+        <input type="reset" value="Reset">
+    </form>
+
+    <h2>Available Flights</h2>
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>Airline</th>
+            <th>Departure</th>
+            <th>Arrival</th>
+            <th>Fare</th>
+        </tr>
+        <tr>
+            <td>Air India</td>
+            <td>08:00 AM</td>
+            <td>11:00 AM</td>
+            <td>4500</td>
+        </tr>
+        <tr>
+            <td>IndiGo</td>
+            <td>02:00 PM</td>
+            <td>05:00 PM</td>
+            <td>3800</td>
+        </tr>
+    </table>
+
+    <h2>Payment Details</h2>
+    <input type="radio" name="payment"> Online Payment
+    <input type="radio" name="payment"> Cash Payment
+    <br><br>
+    <button type="button">Confirm Booking</button>
+    <button type="button">Cancel Ticket</button>
+    <button type="button" onclick="window.print()">Print Ticket</button>
+</body>
+</html>

@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Train Reservation</title>
+</head>
+<body>
+    <h1>Railway Reservation System</h1>
+    <hr>
+
+    <h2>Passenger Details</h2>
+    <form>
+        Name: <input type="text" name="name" required><br><br>
+        Email: <input type="email" name="email"><br><br>
+        Phone Number: <input type="tel" name="phone"><br><br>
+        Journey Date: <input type="date" name="date"><br><br>
+
+        <h3>Journey Details</h3>
+        From Station:
+        <select name="from">
+            <option>Chennai</option>
+            <option>Bangalore</option>
+            <option>Coimbatore</option>
+            <option>Madurai</option>
+        </select><br><br>
+
+        To Station:
+        <select name="to">
+            <option>Bangalore</option>
+            <option>Chennai</option>
+            <option>Hyderabad</option>
+            <option>Delhi</option>
+        </select><br><br>
+
+        Train Class:
+        <input type="radio" name="class"> Sleeper
+        <input type="radio" name="class"> AC 3 Tier
+        <input type="radio" name="class"> AC 2 Tier
+        <br><br>
+
+        Number of Passengers:
+        <input type="number" min="1" max="6"><br><br>
+
+        <input type="submit" value="Book Ticket">
+        <input type="reset" value="Clear">
+    </form>
+
+    <h2>Available Trains</h2>
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>Train Name</th>
+            <th>Departure</th>
+            <th>Arrival</th>
+            <th>Fare</th>
+        </tr>
+        <tr>
+            <td>Chennai Express</td>
+            <td>06:00 AM</td>
+            <td>12:00 PM</td>
+            <td>500</td>
+        </tr>
+        <tr>
+            <td>City Express</td>
+            <td>09:00 AM</td>
+            <td>03:00 PM</td>
+            <td>650</td>
+        </tr>
+    </table>
+
+    <h3>Check PNR Status</h3>
+    PNR Number: <input type="text">
+    <button type="button">Check Status</button>
+</body>
+</html>

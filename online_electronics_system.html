@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TechSavvy Electronics</title>
+</head>
+<body>
+    <h1>TechSavvy Electronics Store</h1>
+    <hr>
+
+    <h2>Search Products</h2>
+    <form>
+        Enter Product Name:
+        <input type="text" name="search">
+        <input type="submit" value="Search">
+    </form>
+
+    <h2>Product Categories</h2>
+    <ul>
+        <li>Mobile Phones</li>
+        <li>Laptops</li>
+        <li>Tablets</li>
+        <li>Accessories</li>
+    </ul>
+
+    <h2>Available Products</h2>
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Availability</th>
+        </tr>
+        <tr>
+            <td>P101</td>
+            <td>Mobile Phone</td>
+            <td>15000</td>
+            <td>In Stock</td>
+        </tr>
+        <tr>
+            <td>P102</td>
+            <td>Laptop</td>
+            <td>45000</td>
+            <td>In Stock</td>
+        </tr>
+        <tr>
+            <td>P103</td>
+            <td>Headphones</td>
+            <td>1500</td>
+            <td>In Stock</td>
+        </tr>
+    </table>
+
+    <h2>Customer Details</h2>
+    <form>
+        Name: <input type="text" required><br><br>
+        Email: <input type="email"><br><br>
+        Phone: <input type="tel"><br><br>
+        Delivery Address:<br>
+        <textarea rows="3" cols="30"></textarea><br><br>
+
+        Payment Method:
+        <select>
+            <option>Cash on Delivery</option>
+            <option>Credit or Debit Card</option>
+            <option>UPI</option>
+        </select><br><br>
+
+        <input type="submit" value="Place Order">
+        <input type="reset" value="Clear">
+    </form>
+
+    <h2>Order Tracking</h2>
+    Order ID: <input type="text">
+    <button type="button">Check Order</button>
+</body>
+</html>
